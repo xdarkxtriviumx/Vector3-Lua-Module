@@ -7,22 +7,22 @@ Usage is fairly straight forward. All methods which are accessed through `:` suc
 ## Implemented Operators
 * Vector Addition
     * You are able to add to vectors together which will return the result of their component values summed together.
-        * `local pos3 = vector_1 + vector_2`
+        * `local vector_3 = vector_1 + vector_2`
 * Vector Subtraction
     * Same as addition, but for subtraction.
-        * `local posDiff = vector_2 - vector_1`
+        * `local vector_diff = vector_2 - vector_1`
 * Vector Multiplication
     * For this I used the Unity approach of returning a vector which holds the respective component values multiplied together. I also added functionality for multiplying a vector by a scalar value if one is passed in instead of another vector.
-        * `local posMul = vector_1 * vector_2` or `local posMul = vector_1 * scalar`
+        * `local vector_mul = vector_1 * vector_2` or `local vector_mul = vector_1 * scalar`
 * Vector Division
     * I wasn't sure if this was necessary, but I did the same with this as I did with multiplication. Returns `nil` if you attempt to divide by 0 with a scalar or vector containing a 0 component.
-        * `local posDiv = vector_2 / vector_1` or `local posDiv = vector_1 / scalar`
+        * `local vector_div = vector_2 / vector_1` or `local vector_div = vector_1 / scalar`
 * Negation
-    * Added support for negating a vector (ex: `local negativePos = -position`). This will return a vector with the signs for all component values inverted.
+    * Added support for negating a vector. This will return a vector with the signs for all component values inverted.
         * `local negatedVec = -vector_1`
 * Overridden '**tostring()**'
     * Using `tostring(myVector)` will return a nicely formatted string that will appear like so: `(1, 2, 3)`.
-        * `local vecText = tostring(vector_1)`
+        * `local vector_text = tostring(vector_1)`
   
 ## Implemented Methods
 #### Class Methods
