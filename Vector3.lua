@@ -1,3 +1,4 @@
+-------- Vector3 Class --------
 local Vector3 = {}
 
 local Vector3_mt = {
@@ -45,11 +46,15 @@ local Vector3_mt = {
     __unm = function(self)
         return Vector3.new(-self.x, -self.y, -self.z);
     end,
+    __eq = function(a, b)
+        if (a.x == b.x and a.y == b.y and a.z == b.z) then return true; else return false; end
+    end,
     __tostring = function(self)
         return "(" .. self.x .. ", " .. self.y .. ", " .. self.z .. ")";
     end
 };
 
+---- Vector3 Class Methods ----
 function Vector3.new(x, y, z)
     local obj = {
         x = x or 0,
@@ -60,6 +65,15 @@ function Vector3.new(x, y, z)
     return setmetatable(obj, Vector3_mt);
 end
 
+function Vector3.lerp(start, finish, ratio)
+    return Vector3.new(
+        start.x + (finish.x - start.x) * ratio,
+        start.y + (finish.y - start.y) * ratio,
+        start.z + (finish.z - start.z) * ratio
+    );
+end
+
+---- Vector3 Instance Methods ----
 function Vector3:distance(other)
     return math.sqrt((self.x - other.x)^2 + (self.y - other.y)^2 + (self.z - other.z)^2);
 end
@@ -98,5 +112,14 @@ function Vector3:cross(other)
 
     return result;
 end
+
+---- Vector3 Fields ----
+Vector3.zero    = Vector3.new(0, 0, 0);
+Vector3.up      = Vector3.new(0, 1, 0);
+Vector3.down    = Vector3.new(0, -1, 0);
+Vector3.left    = Vector3.new(-1, 0, 0);
+Vector3.right   = Vector3.new(1, 0, 0);
+Vector3.forward = Vector3.new(0, 0, 1);
+Vector3.back    = Vector3.new(0, 0, -1);
 
 return Vector3;
