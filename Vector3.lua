@@ -71,6 +71,8 @@ end
 function Vector3:normalized()
     local magnitude = self:magnitude();
 
+    if (magnitude == 0) then return Vector3.new(); end
+
     return Vector3.new(
         self.x / magnitude,
         self.y / magnitude,
