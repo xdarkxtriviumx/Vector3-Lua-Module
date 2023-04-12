@@ -75,3 +75,6 @@ These fields are based on a 'positive y-axis = up, positive x-axis = right, posi
 * `Vector3.back`
     * Represents the Vector3 (0, 0, -1).
         * ex: `local back = Vector3.back`
+
+## Important Final Notes
+If you are using this in an in-line way (such as pasting this into a script in the Plasma game), just remove the final `return Vector3;` line at the end and place your code starting below. You can leave this module in the current form if you have access to `require()` to be able to import it at the top of a different script.
