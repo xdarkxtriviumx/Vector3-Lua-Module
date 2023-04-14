@@ -51,6 +51,9 @@ Usage is fairly straight forward. All methods which are accessed through `:` suc
 * `Vector3:cross(other)`
     * Returns the cross (vector) product of the calling and `other` vector.
         * ex: `local crossProduct = vector_1:cross(vector_2)`
+* `Vector3:tostring()`
+    * Returns the value of `tostring(myVector)` in a more convenient way.
+        * ex: `local vector_string = vector_1:tostring()`
 
 ## Implemented Fields
 These fields are based on a 'positive y-axis = up, positive x-axis = right, positize z-axis = forward' orientation.

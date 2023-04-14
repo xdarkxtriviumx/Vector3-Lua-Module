@@ -50,7 +50,7 @@ local Vector3_mt = {
         if (a.x == b.x and a.y == b.y and a.z == b.z) then return true; else return false; end
     end,
     __tostring = function(self)
-        return "(" .. self.x .. ", " .. self.y .. ", " .. self.z .. ")";
+        return "( " .. self.x .. ", " .. self.y .. ", " .. self.z .. " )";
     end
 };
 
@@ -111,6 +111,10 @@ function Vector3:cross(other)
     if (result.z == 0) then result.z = 0; end
 
     return result;
+end
+
+function Vector3:tostring()
+    return tostring(self);
 end
 
 ---- Vector3 Fields ----
