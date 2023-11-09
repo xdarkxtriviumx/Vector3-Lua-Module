@@ -23,6 +23,9 @@ Usage is fairly straight forward. All methods which are accessed through `:` suc
 * **Equality Comparison**
     * You can do equality comparisons between vectors to see if they have equal component values.
         * ex: `local isEqual = vector_1 == vector_2`
+* **Concat Operations**
+    * You can concat the vectors directly into a string which will use the 'tostring()' of the vector.
+        * ex: `print('Vector_1: '..vector_1)`
 * **Overridden 'tostring()'**
     * Using `tostring(myVector)` will return a nicely formatted string that will appear like so: `(1, 2, 3)`.
         * ex: `local vector_text = tostring(vector_1)`
