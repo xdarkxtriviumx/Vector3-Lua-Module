@@ -1,68 +1,69 @@
--------- Vector3 Class --------
 local Vector3 = {}
 
-local Vector3_mt = {
-    __index = Vector3,
-    __add = function(a, b)
-        return Vector3.new(a.x + b.x, a.y + b.y, a.z + b.z);
-    end,
-    __sub = function(a, b)
-        return Vector3.new(a.x - b.x, a.y - b.y, a.z - b.z);
-    end,
-    __mul = function(a, b)
-        if (type(b) == "number") then
-            return Vector3.new(
-                a.x * b,
-                a.y * b,
-                a.z * b
-            );
-        else
-            return Vector3.new(
-                a.x * b.x,
-                a.y * b.y,
-                a.z * b.z
-            );
-        end
-    end,
-    __div = function(a, b)
-        if (type(b) == "number") then
-            if (b == 0) then print("Attempted to divide by zero. Returning nil"); return nil; end
+local _ = {__index = Vector3};
 
-            return Vector3.new(
-                a.x / b,
-                a.y / b,
-                a.z / b
-            );
-        else
-            if (b.x == 0 or b.y == 0 or b.z == 0) then print("Attempted to divide by zero. Returning nil."); return nil; end
-            
-            return Vector3.new(
-                a.x / b.x,
-                a.y / b.y,
-                a.z / b.z
-            );
-        end
-    end,
-    __unm = function(self)
-        return Vector3.new(-self.x, -self.y, -self.z);
-    end,
-    __eq = function(a, b)
-        if (a.x == b.x and a.y == b.y and a.z == b.z) then return true; else return false; end
-    end,
-    __tostring = function(self)
-        return "( " .. self.x .. ", " .. self.y .. ", " .. self.z .. " )";
-    end
-};
+-----------------------
+----| Metamethods |----
+-----------------------
 
----- Vector3 Class Methods ----
+function _.__add(a, b) return Vector3.new(a.x + b.x, a.y + b.y, a.z + b.z); end
+
+function _.__sub(a, b) return Vector3.new(a.x - b.x, a.y - b.y, a.z - b.z); end
+
+function _:__unm() return Vector3.new(-self.x, -self.y, -self.z); end
+
+function _.__eq(a, b) if (a.x == b.x and a.y == b.y and a.z == b.z) then return true; else return false; end; end;
+
+function _:__tostring() return "("..self.x..", "..self.y..", "..self.z..")"; end;
+
+function _.__concat(a, b) return tostring(a)..tostring(b); end;
+
+function _.__mul(a, b)
+  if (type(b) == "number") then
+    return Vector3.new(
+        a.x * b,
+        a.y * b,
+        a.z * b
+    );
+  end
+
+  return Vector3.new(
+      a.x * b.x,
+      a.y * b.y,
+      a.z * b.z
+  );
+end
+
+function _.__div(a, b) -- Unsure if useful but kept just in case.
+  if (type(b) == "number") then
+    if (b == 0) then print("Attempted to divide by zero. Returning nil"); return nil; end
+
+    return Vector3.new(
+        a.x / b,
+        a.y / b,
+        a.z / b
+    );
+  end
+
+  if (b.x == 0 or b.y == 0 or b.z == 0) then print("Attempted to divide by zero. Returning nil."); return nil; end
+
+  return Vector3.new(
+      a.x / b.x,
+      a.y / b.y,
+      a.z / b.z
+  );
+end
+
+---------------------------
+----| Vector3 Methods |----
+---------------------------
+
 function Vector3.new(x, y, z)
-    local obj = {
-        x = x or 0,
-        y = y or 0,
-        z = z or 0
-    }
-
-    return setmetatable(obj, Vector3_mt);
+    return setmetatable({
+      x = x or 0,
+      y = y or 0,
+      z = z or 0
+    }, _);
 end
 
 function Vector3.lerp(start, finish, ratio)
@@ -73,7 +74,6 @@ function Vector3.lerp(start, finish, ratio)
     );
 end
 
----- Vector3 Instance Methods ----
 function Vector3:distance(other)
     return math.sqrt((self.x - other.x)^2 + (self.y - other.y)^2 + (self.z - other.z)^2);
 end
